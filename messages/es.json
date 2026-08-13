@@ -1,4 +1,94 @@
 {
+  "Home": {
+    "hero": {
+      "eyebrow": "Comunidad nacional de finanzas regenerativas",
+      "title1": "Finanzas que",
+      "titleAccent": "regeneran",
+      "title2": "a Colombia",
+      "subtitle": "Reorientamos el dinero hacia lo vivo: ecosistemas, comunidades y bienes comunes. Del extraer al regenerar.",
+      "join": "Únete",
+      "learn": "¿Qué es ReFi?"
+    },
+    "what": {
+      "title": "¿Qué es ReFi?",
+      "lead": "Las Finanzas Regenerativas reorientan el dinero hacia lo vivo. En vez de extraer valor, construimos economías que restauran los sistemas ecológicos y sociales.",
+      "spectrumTitle": "Del extraer al",
+      "spectrumAccent": "regenerar",
+      "extractiveName": "Extractivo",
+      "extractiveBody": "Extrae para el beneficio inmediato, sin mirar el largo plazo.",
+      "sustainableName": "Sostenible",
+      "sustainableBody": "Equilibra el uso de recursos, pero no restaura lo degradado.",
+      "regenerativeName": "Regenerativo",
+      "regenerativeBody": "Restaura activamente los sistemas naturales y sociales."
+    },
+    "principles": {
+      "eyebrow": "Principios",
+      "title": "Lo que guía a las finanzas regenerativas",
+      "ecologicalTitle": "Armonía ecológica",
+      "ecologicalBody": "Finanzas alineadas con la regeneración del planeta.",
+      "holisticTitle": "Capital holístico",
+      "holisticBody": "Valor más allá de lo financiero: social, natural y cultural.",
+      "equityTitle": "Equidad social",
+      "equityBody": "Cerrar desigualdades y cuidar a todas las comunidades.",
+      "systemicTitle": "Pensamiento sistémico",
+      "systemicBody": "Economía, sociedad y ambiente, profundamente conectados.",
+      "circularTitle": "Economía circular",
+      "circularBody": "Minimizar residuos, maximizar la regeneración de materiales."
+    },
+    "tech": {
+      "title": "El motor: tecnología onchain",
+      "lead": "ReFi se apoya en blockchain para lograr lo que la banca tradicional no puede: transparencia total, dinero programable y acceso sin fronteras.",
+      "useCasesLabel": "Casos de uso",
+      "transparencyTitle": "Transparencia pública",
+      "transparencyBody": "Cualquiera puede auditar el código y las transacciones onchain.",
+      "programmableTitle": "Dinero programable",
+      "programmableBody": "Los fondos se liberan solo al cumplir metas verificables.",
+      "realTitle": "Vínculo con lo real",
+      "realBody": "Impacta activos tangibles, como los créditos de carbono.",
+      "accessTitle": "Acceso equitativo",
+      "accessBody": "Sin barreras geográficas ni de capital de partida.",
+      "uc1": "Créditos de carbono",
+      "uc2": "Compensación de emisiones",
+      "uc3": "Renta Básica Universal",
+      "uc4": "Monedas locales",
+      "uc5": "Valor a la naturaleza",
+      "uc6": "Servicios ecosistémicos"
+    },
+    "nodes": {
+      "eyebrow": "Nodos regionales",
+      "title1": "Una red que crece por",
+      "titleAccent": "bioregión",
+      "lead": "ReFi Colombia es un tejido de comunidades locales. Cada nodo activa la regeneración en su territorio."
+    },
+    "transparency": {
+      "eyebrow": "Transparencia",
+      "title1": "Cada peso,",
+      "titleAccent": "verificable",
+      "title2": "onchain",
+      "lead": "Nuestro programa de subsidios vive en un contrato público en Celo. Los fondos aportados y distribuidos se pueden auditar en tiempo real.",
+      "programTitle": "Programa de subsidios",
+      "openApp": "Abrir la app",
+      "viewDune": "Ver en Dune",
+      "statDistributed": "Distribuido a beneficiarios",
+      "statFunds": "Fondos aportados al programa",
+      "statRecipients": "Personas beneficiarias"
+    },
+    "community": {
+      "title1": "Construyamos una economía",
+      "titleAccent": "viva",
+      "title2": "en Colombia",
+      "lead": "ReFi Colombia es un movimiento abierto y colaborativo. Trae tu voz, tu proyecto o tu curiosidad.",
+      "join": "Únete",
+      "calendar": "Ver calendario"
+    },
+    "campaign": {
+      "badge": "Emergencia · Terremoto",
+      "title": "Ayuda a Colombia tras el terremoto",
+      "body": "El 10 de agosto de 2026 un terremoto de magnitud 7.4 golpeó a Colombia. ReFi Colombia recibe y administra las donaciones onchain en USDC o USDT sobre cinco redes, y cada aporte es verificable públicamente.",
+      "donate": "Donar ahora",
+      "dismiss": "Ahora no"
+    }
+  },
   "Landing": {
     "header": " ¡Entra a nuestro Calendario Público de eventos y entérate de los próximos eventos, no te quedes por fuera y apoya a la comunidad",
 

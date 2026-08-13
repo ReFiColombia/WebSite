@@ -41,7 +41,30 @@ module.exports = {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          strong: "var(--accent-strong)",
+          ink: "var(--accent-ink)",
         },
+        fg: {
+          DEFAULT: "var(--fg)",
+          muted: "var(--fg-muted)",
+          faint: "var(--fg-faint)",
+        },
+        bg: {
+          DEFAULT: "var(--bg)",
+          elev: "var(--bg-elev)",
+          "elev-2": "var(--bg-elev-2)",
+        },
+        line: {
+          DEFAULT: "var(--line)",
+          strong: "var(--line-strong)",
+        },
+        "brand-lavender": "var(--brand-lavender)",
+        "aurora-cyan": "var(--aurora-cyan)",
+        "aurora-blue": "var(--aurora-blue)",
+        "aurora-indigo": "var(--aurora-indigo)",
+        "aurora-violet": "var(--aurora-violet)",
+        "aurora-rose": "var(--aurora-rose)",
+        "aurora-gold": "var(--aurora-gold)",
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -50,6 +73,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      fontFamily: {
+        sans: ["var(--font-outfit)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-playfair)", "ui-serif", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -72,5 +99,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 }

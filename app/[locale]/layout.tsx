@@ -1,24 +1,71 @@
 import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Playfair_Display, Outfit } from 'next/font/google'
 import Providers from './providers'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { Toaster } from '@/components/ui/toaster'
 import { unstable_setRequestLocale } from 'next-intl/server'
-import { Header } from '@/components/Header'
 
-const inter = Inter({ subsets: ['latin'] })
+const playfair = Playfair_Display({
+  variable: '--font-playfair',
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap'
+})
+
+const outfit = Outfit({
+  variable: '--font-outfit',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  display: 'swap'
+})
+
+const SITE_URL = 'https://reficolombia.org'
+const TITLE = 'ReFi Colombia - Finanzas que regeneran'
+const DESCRIPTION =
+  'ReFi Colombia es la comunidad nacional de finanzas regenerativas que reorienta el dinero hacia lo vivo: ecosistemas, comunidades y bienes comunes. Del extraer al regenerar.'
 
 export const metadata: Metadata = {
-  title: 'ReFi Medellín',
-  description:
-    'Somos el primer Nodo Colombiano de ReFiDAO encargado de promover proyectos ReFi en la región. \nEn ReFi Medellín, creemos en los proyectos regenerativos y el impacto transformador que estos tienen. ¡Es hora de pensar diferente y regenerarnos juntos!'
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITLE, template: '%s - ReFi Colombia' },
+  description: DESCRIPTION,
+  applicationName: 'ReFi Colombia',
+  keywords: [
+    'ReFi Colombia',
+    'finanzas regenerativas',
+    'regenerative finance',
+    'ReFi',
+    'Celo',
+    'blockchain',
+    'Web3',
+    'Colombia'
+  ],
+  authors: [{ name: 'ReFi Colombia', url: SITE_URL }],
+  openGraph: {
+    type: 'website',
+    siteName: 'ReFi Colombia',
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: TITLE }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    site: '@RefiColombia',
+    images: ['/og.jpg']
+  },
+  robots: { index: true, follow: true },
+  themeColor: '#0e1220',
+  colorScheme: 'dark'
 }
 
 export async function generateStaticParams () {
-  return [{ lang: 'en' }, { lang: 'es' }]
+  return [{ locale: 'en' }, { locale: 'es' }]
 }
 const locales = ['en', 'es']
 export default async function RootLayout ({
@@ -39,11 +86,13 @@ export default async function RootLayout ({
   }
 
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
+    <html
+      lang={locale}
+      className={`${playfair.variable} ${outfit.variable}`}
+    >
+      <body className='grain min-h-dvh bg-bg text-fg antialiased'>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
-            <Header />
             <Navbar />
             {children}
             <Toaster />

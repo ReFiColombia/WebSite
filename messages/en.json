@@ -1,4 +1,94 @@
 {
+  "Home": {
+    "hero": {
+      "eyebrow": "National regenerative finance community",
+      "title1": "Finance that",
+      "titleAccent": "regenerates",
+      "title2": "Colombia",
+      "subtitle": "We redirect money toward what is alive: ecosystems, communities and the commons. From extracting to regenerating.",
+      "join": "Join us",
+      "learn": "What is ReFi?"
+    },
+    "what": {
+      "title": "What is ReFi?",
+      "lead": "Regenerative Finance redirects money toward what is alive. Instead of extracting value, we build economies that restore ecological and social systems.",
+      "spectrumTitle": "From extracting to",
+      "spectrumAccent": "regenerating",
+      "extractiveName": "Extractive",
+      "extractiveBody": "Extracts for immediate gain, ignoring the long term.",
+      "sustainableName": "Sustainable",
+      "sustainableBody": "Balances resource use, but does not restore what is degraded.",
+      "regenerativeName": "Regenerative",
+      "regenerativeBody": "Actively restores natural and social systems."
+    },
+    "principles": {
+      "eyebrow": "Principles",
+      "title": "What guides regenerative finance",
+      "ecologicalTitle": "Ecological harmony",
+      "ecologicalBody": "Finance aligned with the regeneration of the planet.",
+      "holisticTitle": "Holistic capital",
+      "holisticBody": "Value beyond the financial: social, natural and cultural.",
+      "equityTitle": "Social equity",
+      "equityBody": "Closing inequalities and caring for every community.",
+      "systemicTitle": "Systems thinking",
+      "systemicBody": "Economy, society and environment, deeply connected.",
+      "circularTitle": "Circular economy",
+      "circularBody": "Minimize waste, maximize the regeneration of materials."
+    },
+    "tech": {
+      "title": "The engine: onchain technology",
+      "lead": "ReFi relies on blockchain to do what traditional banking cannot: full transparency, programmable money and borderless access.",
+      "useCasesLabel": "Use cases",
+      "transparencyTitle": "Public transparency",
+      "transparencyBody": "Anyone can audit the code and transactions onchain.",
+      "programmableTitle": "Programmable money",
+      "programmableBody": "Funds are released only when verifiable goals are met.",
+      "realTitle": "Real-world link",
+      "realBody": "It impacts tangible assets, like carbon credits.",
+      "accessTitle": "Equitable access",
+      "accessBody": "No geographic or starting-capital barriers.",
+      "uc1": "Carbon credits",
+      "uc2": "Emissions offsetting",
+      "uc3": "Universal Basic Income",
+      "uc4": "Local currencies",
+      "uc5": "Value for nature",
+      "uc6": "Ecosystem services"
+    },
+    "nodes": {
+      "eyebrow": "Regional nodes",
+      "title1": "A network growing by",
+      "titleAccent": "bioregion",
+      "lead": "ReFi Colombia is a fabric of local communities. Each node activates regeneration in its territory."
+    },
+    "transparency": {
+      "eyebrow": "Transparency",
+      "title1": "Every peso,",
+      "titleAccent": "verifiable",
+      "title2": "onchain",
+      "lead": "Our subsidy program lives in a public contract on Celo. Funds contributed and distributed can be audited in real time.",
+      "programTitle": "Subsidy program",
+      "openApp": "Open the app",
+      "viewDune": "View on Dune",
+      "statDistributed": "Distributed to beneficiaries",
+      "statFunds": "Funds contributed to the program",
+      "statRecipients": "People benefited"
+    },
+    "community": {
+      "title1": "Let's build a",
+      "titleAccent": "living",
+      "title2": "economy in Colombia",
+      "lead": "ReFi Colombia is an open, collaborative movement. Bring your voice, your project or your curiosity.",
+      "join": "Join us",
+      "calendar": "View calendar"
+    },
+    "campaign": {
+      "badge": "Emergency · Earthquake",
+      "title": "Help Colombia after the earthquake",
+      "body": "On August 10, 2026 a magnitude 7.4 earthquake struck Colombia. ReFi Colombia receives and manages donations onchain in USDC or USDT across five networks, and every contribution is publicly verifiable.",
+      "donate": "Donate now",
+      "dismiss": "Not now"
+    }
+  },
   "Landing": {
     "header": "Enter our Public Calendar of events and find out about upcoming events ",
     "popUp": {
