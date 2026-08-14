@@ -16,7 +16,7 @@ export function CampaignPopup() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.localStorage.getItem(STORAGE_KEY) === "dismissed") return;
+    if (window.sessionStorage.getItem(STORAGE_KEY) === "dismissed") return;
     const timer = window.setTimeout(() => setOpen(true), 1100);
     return () => window.clearTimeout(timer);
   }, []);
@@ -24,7 +24,7 @@ export function CampaignPopup() {
   const dismiss = () => {
     setOpen(false);
     try {
-      window.localStorage.setItem(STORAGE_KEY, "dismissed");
+      window.sessionStorage.setItem(STORAGE_KEY, "dismissed");
     } catch {
       // storage unavailable - closing for the session is enough
     }
