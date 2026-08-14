@@ -97,48 +97,48 @@ export function CampaignPopup() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg-elev via-transparent to-transparent" />
             </div>
 
-            <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-bg/50 p-1 backdrop-blur-sm">
-              <div className="inline-flex items-center rounded-full border border-line p-0.5">
-                {(["es", "en"] as Lang[]).map((l) => (
-                  <button
-                    key={l}
-                    type="button"
-                    onClick={() => setLang(l)}
-                    aria-pressed={lang === l}
-                    className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 ${
-                      lang === l
-                        ? "bg-bg-elev-2 text-fg"
-                        : "text-fg-faint hover:text-fg-muted"
-                    }`}
-                  >
-                    {l}
-                  </button>
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={dismiss}
-                aria-label={c.dismiss}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg-muted transition-colors hover:text-fg"
-              >
-                <X size={18} />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={dismiss}
+              aria-label={c.dismiss}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-line-strong bg-bg/80 text-fg backdrop-blur-sm transition-colors hover:bg-bg"
+            >
+              <X size={18} />
+            </button>
 
             <div className="p-7 pt-6 md:p-9 md:pt-7">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/brand/logo-circular.png"
-                  alt=""
-                  aria-hidden
-                  width={44}
-                  height={44}
-                  className="h-11 w-11 shrink-0"
-                />
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.16em] text-aurora">
-                  <HeartStraight size={14} weight="fill" className="shrink-0" />
-                  {c.badge}
-                </span>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <Image
+                    src="/brand/logo-circular.png"
+                    alt=""
+                    aria-hidden
+                    width={44}
+                    height={44}
+                    className="h-11 w-11 shrink-0"
+                  />
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.16em] text-aurora">
+                    <HeartStraight size={14} weight="fill" className="shrink-0" />
+                    {c.badge}
+                  </span>
+                </div>
+                <div className="inline-flex shrink-0 items-center rounded-full border border-line p-0.5">
+                  {(["es", "en"] as Lang[]).map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => setLang(l)}
+                      aria-pressed={lang === l}
+                      className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                        lang === l
+                          ? "bg-bg-elev-2 text-fg"
+                          : "text-fg-faint hover:text-fg-muted"
+                      }`}
+                    >
+                      {l}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <h2 className="mt-6 font-display text-3xl font-medium leading-[1.08] tracking-tight text-fg md:text-4xl">
