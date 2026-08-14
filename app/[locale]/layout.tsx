@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+import { CampaignBanner } from '@/components/home/refi/CampaignBanner'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Playfair_Display, Outfit } from 'next/font/google'
@@ -93,6 +94,7 @@ export default async function RootLayout ({
       <body className='grain min-h-dvh bg-bg text-fg antialiased'>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
+            <CampaignBanner />
             <Navbar />
             {children}
             <Toaster />

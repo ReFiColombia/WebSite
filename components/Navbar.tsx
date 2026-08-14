@@ -9,6 +9,7 @@ import { List, X } from "@phosphor-icons/react";
 import { useLocale } from "next-intl";
 import { useWeb3Modal } from "@web3modal/react";
 import { useAccount } from "wagmi";
+import { LanguageToggle } from "@/components/home/refi/LanguageToggle";
 
 function shortAddr(a?: string) {
   return a ? `${a.slice(0, 6)}...${a.slice(-4)}` : "";
@@ -40,17 +41,11 @@ function Navbar() {
     { label: "Blog", href: "https://blog.refimedellin.org/", external: true },
   ];
 
-  const otherLocale = isEs ? "en" : "es";
-  const otherPath = (pathname || `/${locale}`).replace(
-    /^\/(es|en)/,
-    `/${otherLocale}`,
-  );
-
   if (!mounted) return null;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-10 z-50 transition-colors duration-300 ${
         solid
           ? "border-b border-line bg-bg/85 backdrop-blur-md"
           : "border-b border-transparent"
@@ -84,12 +79,7 @@ function Navbar() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href={otherPath}
-            className="text-sm font-medium text-fg-faint transition-colors hover:text-fg"
-          >
-            {otherLocale.toUpperCase()}
-          </Link>
+          <LanguageToggle />
           <button
             type="button"
             onClick={() => openModal()}
@@ -145,13 +135,7 @@ function Navbar() {
                       ? "Conectar"
                       : "Connect"}
                 </button>
-                <Link
-                  href={otherPath}
-                  onClick={() => setOpen(false)}
-                  className="rounded-full border border-line px-5 py-3 text-base text-fg-muted"
-                >
-                  {otherLocale.toUpperCase()}
-                </Link>
+                <LanguageToggle onNavigate={() => setOpen(false)} />
               </div>
             </div>
           </motion.div>

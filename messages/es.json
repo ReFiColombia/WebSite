@@ -86,7 +86,9 @@
       "title": "Ayuda a Colombia tras el terremoto",
       "body": "El 10 de agosto de 2026 un terremoto de magnitud 7.4 golpeó a Colombia. ReFi Colombia recibe y administra las donaciones onchain en USDC o USDT sobre cinco redes, y cada aporte es verificable públicamente.",
       "donate": "Donar ahora",
-      "dismiss": "Ahora no"
+      "dismiss": "Ahora no",
+      "bannerText": "Emergencia: terremoto en Colombia",
+      "bannerShort": "Terremoto en Colombia"
     }
   },
   "Landing": {

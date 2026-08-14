@@ -86,7 +86,9 @@
       "title": "Help Colombia after the earthquake",
       "body": "On August 10, 2026 a magnitude 7.4 earthquake struck Colombia. ReFi Colombia receives and manages donations onchain in USDC or USDT across five networks, and every contribution is publicly verifiable.",
       "donate": "Donate now",
-      "dismiss": "Not now"
+      "dismiss": "Not now",
+      "bannerText": "Emergency: earthquake in Colombia",
+      "bannerShort": "Colombia earthquake"
     }
   },
   "Landing": {
