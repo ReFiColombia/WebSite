@@ -7,6 +7,7 @@ import { Technology } from "@/components/home/refi/Technology";
 import { Nodes } from "@/components/home/refi/Nodes";
 import { Transparency } from "@/components/home/refi/Transparency";
 import { Governance } from "@/components/home/refi/Governance";
+import { Team } from "@/components/home/refi/Team";
 import { Community } from "@/components/home/refi/Community";
 import { Footer } from "@/components/home/refi/Footer";
 import { CampaignPopup } from "@/components/home/refi/CampaignPopup";
@@ -27,6 +28,7 @@ export default function Home({
       <Nodes />
       <Transparency />
       <Governance />
+      <Team />
       <Community />
       <Footer />
       <CampaignPopup />

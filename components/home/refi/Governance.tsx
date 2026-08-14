@@ -1,4 +1,4 @@
-import { ShieldCheck, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ShieldCheck, ArrowUpRight, Certificate } from "@phosphor-icons/react/dist/ssr";
 import { useLocale } from "next-intl";
 import { Reveal } from "./Reveal";
 
@@ -6,12 +6,12 @@ const OPERATIONAL = "0xB41C38818a18b736867D9640f0B191b7890Da136";
 const EMERGENCY = "0x8c5F869e1a5A39F378612d69c32E84d0114ab7C5";
 const scan = (a: string) => `https://celoscan.io/address/${a}`;
 
-const SIGNERS: { ens: string | null; address: string }[] = [
-  { ens: "reficolombia.eth", address: "0xBE42B3f0BA9f7c8e4b6c219BE55566c88CEfC581" },
-  { ens: "refimedellin.eth", address: "0x302E2A0D4291ac14Aa1160504cA45A0A1F2E7a5c" },
-  { ens: "ximemonclou.eth", address: "0x0ce522CAD66Fa4D6529B2Db76E0A91D53296D58b" },
-  { ens: null, address: "0x4bf9c4fb5efb2f4c7f6074a45161cab440c01b59" },
-  { ens: null, address: "0xae10cf86a4fd76e971571fe55c09c476de895597" },
+const SIGNERS: { name: string; address: string }[] = [
+  { name: "reficolombia.eth", address: "0xBE42B3f0BA9f7c8e4b6c219BE55566c88CEfC581" },
+  { name: "ReFi Medellín", address: "0x302E2A0D4291ac14Aa1160504cA45A0A1F2E7a5c" },
+  { name: "ReFi Cartagena", address: "0x4bf9c4fb5efb2f4c7f6074a45161cab440c01b59" },
+  { name: "ReFi Amazonas", address: "0xae10cf86a4fd76e971571fe55c09c476de895597" },
+  { name: "Ximena Monclou", address: "0x0ce522CAD66Fa4D6529B2Db76E0A91D53296D58b" },
 ];
 
 export function Governance() {
@@ -22,8 +22,8 @@ export function Governance() {
     eyebrow: isEs ? "Debida diligencia" : "Due diligence",
     title: isEs ? "Cómo se gobiernan los fondos" : "How the funds are governed",
     lead: isEs
-      ? "Las donaciones se reciben en una wallet en Celo controlada por un multisig 3 de 5. Nadie puede mover fondos en solitario: se requieren al menos tres firmas del equipo."
-      : "Donations are received in a wallet on Celo controlled by a 3 of 5 multisig. No one can move funds alone: at least three team signatures are required.",
+      ? "Las donaciones se reciben en una wallet en Celo controlada por un multisig 3 de 5, firmado por representantes de los nodos regionales de ReFi Colombia. Nadie puede mover fondos en solitario: se requieren al menos tres firmas."
+      : "Donations are received in a wallet on Celo controlled by a 3 of 5 multisig, signed by representatives of ReFi Colombia's regional nodes. No one can move funds alone: at least three signatures are required.",
     emergencyTitle: isEs ? "Wallet de emergencias" : "Emergency wallet",
     emergencyDesc: isEs
       ? "Recibe las donaciones del terremoto. Su único controlador es el multisig operativo (3 de 5), así que cada salida exige tres firmas."
@@ -31,6 +31,10 @@ export function Governance() {
     opTitle: isEs ? "Multisig operativo (3 de 5)" : "Operational multisig (3 of 5)",
     signers: isEs ? "Firmantes" : "Signers",
     view: isEs ? "Ver en Celoscan" : "View on Celoscan",
+    legalTitle: isEs ? "Figura legal" : "Legal standing",
+    legalBody: isEs
+      ? "ReFi Colombia Foundation, registrada en Próspera ZEDE (Honduras)."
+      : "ReFi Colombia Foundation, registered in Próspera ZEDE (Honduras).",
   };
 
   return (
@@ -95,16 +99,10 @@ export function Governance() {
                       rel="noopener noreferrer"
                       className="group block"
                     >
-                      {s.ens && (
-                        <span className="text-sm font-medium text-fg group-hover:text-accent">
-                          {s.ens}
-                        </span>
-                      )}
-                      <span
-                        className={`block break-all font-mono text-xs ${
-                          s.ens ? "text-fg-faint" : "text-fg-muted group-hover:text-accent"
-                        }`}
-                      >
+                      <span className="text-sm font-medium text-fg group-hover:text-accent">
+                        {s.name}
+                      </span>
+                      <span className="block break-all font-mono text-xs text-fg-faint">
                         {s.address}
                       </span>
                     </a>
@@ -114,6 +112,18 @@ export function Governance() {
             </div>
           </Reveal>
         </div>
+
+        <Reveal delay={0.1}>
+          <div className="mt-5 flex items-start gap-4 rounded-[var(--radius-card)] border border-line bg-bg-elev p-6">
+            <Certificate size={24} weight="light" className="mt-0.5 shrink-0 text-accent" />
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-fg-faint">
+                {t.legalTitle}
+              </p>
+              <p className="mt-1.5 text-base text-fg">{t.legalBody}</p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

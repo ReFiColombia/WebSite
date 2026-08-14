@@ -35,11 +35,12 @@ function Navbar() {
   const p = (path: string) => `/${locale}${path}`;
   const links = [
     { label: isEs ? "Inicio" : "Home", href: p("/") },
-    { label: isEs ? "Préstamos" : "Lending", href: p("/lend-manager") },
-    { label: isEs ? "Donar" : "Donate", href: p("/donate") },
+    { label: isEs ? "Préstamos" : "Lending", href: p("/lend-manager"), wallet: true },
+    { label: isEs ? "Donar" : "Donate", href: p("/donate"), wallet: true },
     { label: isEs ? "Comunidad" : "Community", href: p("/community") },
     { label: "Blog", href: "https://blog.refimedellin.org/", external: true },
   ];
+  const lockTitle = isEs ? "Conecta tu wallet primero" : "Connect your wallet first";
 
   if (!mounted) return null;
 
@@ -68,17 +69,28 @@ function Navbar() {
         </Link>
 
         <div className="hidden items-center gap-7 lg:flex">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              target={l.external ? "_blank" : undefined}
-              rel={l.external ? "noopener noreferrer" : undefined}
-              className="text-sm text-fg-muted transition-colors hover:text-fg"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) =>
+            l.wallet && !isConnected ? (
+              <span
+                key={l.href}
+                aria-disabled="true"
+                title={lockTitle}
+                className="cursor-not-allowed select-none text-sm text-fg-faint/40"
+              >
+                {l.label}
+              </span>
+            ) : (
+              <Link
+                key={l.href}
+                href={l.href}
+                target={l.external ? "_blank" : undefined}
+                rel={l.external ? "noopener noreferrer" : undefined}
+                className="text-sm text-fg-muted transition-colors hover:text-fg"
+              >
+                {l.label}
+              </Link>
+            ),
+          )}
           <LanguageToggle />
           <button
             type="button"
@@ -108,18 +120,29 @@ function Navbar() {
             className="overflow-hidden border-t border-line bg-bg px-5 pb-6 pt-2 lg:hidden"
           >
             <div className="flex flex-col">
-              {links.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  target={l.external ? "_blank" : undefined}
-                  rel={l.external ? "noopener noreferrer" : undefined}
-                  onClick={() => setOpen(false)}
-                  className="border-b border-line py-3.5 text-base text-fg-muted"
-                >
-                  {l.label}
-                </Link>
-              ))}
+              {links.map((l) =>
+                l.wallet && !isConnected ? (
+                  <span
+                    key={l.href}
+                    aria-disabled="true"
+                    title={lockTitle}
+                    className="cursor-not-allowed select-none border-b border-line py-3.5 text-base text-fg-faint/40"
+                  >
+                    {l.label}
+                  </span>
+                ) : (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    target={l.external ? "_blank" : undefined}
+                    rel={l.external ? "noopener noreferrer" : undefined}
+                    onClick={() => setOpen(false)}
+                    className="border-b border-line py-3.5 text-base text-fg-muted"
+                  >
+                    {l.label}
+                  </Link>
+                ),
+              )}
               <div className="mt-5 flex items-center gap-3">
                 <button
                   type="button"
