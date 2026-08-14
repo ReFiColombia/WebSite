@@ -91,7 +91,9 @@
       "bannerShort": "Terremoto en Colombia",
       "eyebrow": "Respuesta a la emergencia",
       "trust": "Donaciones onchain en USDC o USDT sobre cinco redes, recibidas y administradas por ReFi Colombia, y verificables públicamente en la blockchain.",
-      "learnMore": "Cómo se manejan los fondos"
+      "learnMore": "Cómo se manejan los fondos",
+      "zeroFees": "0% de comisión",
+      "onchainVerifiable": "Verificable onchain"
     }
   },
   "Landing": {

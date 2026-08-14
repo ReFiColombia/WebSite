@@ -10,6 +10,7 @@ import { useLocale } from "next-intl";
 import { useWeb3Modal } from "@web3modal/react";
 import { useAccount } from "wagmi";
 import { LanguageToggle } from "@/components/home/refi/LanguageToggle";
+import { TELEGRAM_URL } from "@/lib/links";
 
 function shortAddr(a?: string) {
   return a ? `${a.slice(0, 6)}...${a.slice(-4)}` : "";
@@ -37,7 +38,7 @@ function Navbar() {
     { label: isEs ? "Inicio" : "Home", href: p("/") },
     { label: isEs ? "Préstamos" : "Lending", href: p("/lend-manager"), wallet: true },
     { label: isEs ? "Donar" : "Donate", href: p("/donate"), wallet: true },
-    { label: isEs ? "Comunidad" : "Community", href: p("/community") },
+    { label: isEs ? "Comunidad" : "Community", href: TELEGRAM_URL, external: true },
     { label: "Blog", href: "https://blog.refimedellin.org/", external: true },
   ];
   const lockTitle = isEs ? "Conecta tu wallet primero" : "Connect your wallet first";

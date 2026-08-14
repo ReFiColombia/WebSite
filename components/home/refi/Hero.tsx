@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
-import { JOIN_URL } from "@/lib/links";
+import { TELEGRAM_URL } from "@/lib/links";
 
 export function Hero() {
   const t = useTranslations("Home.hero");
@@ -60,7 +60,7 @@ export function Hero() {
 
           <motion.div {...rise(0.24)} className="mt-10 flex flex-wrap items-center gap-4">
             <a
-              href={JOIN_URL}
+              href={TELEGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-aurora group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-medium transition-transform duration-200 active:scale-[0.97]"

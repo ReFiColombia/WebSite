@@ -1,7 +1,7 @@
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { useTranslations } from "next-intl";
 import { Reveal } from "./Reveal";
-import { JOIN_URL } from "@/lib/links";
+import { JOIN_URL, TELEGRAM_URL } from "@/lib/links";
 
 export function Community() {
   const t = useTranslations("Home.community");
@@ -21,7 +21,7 @@ export function Community() {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
-              href={JOIN_URL}
+              href={TELEGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-aurora group inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-medium transition-transform duration-200 active:scale-[0.97]"

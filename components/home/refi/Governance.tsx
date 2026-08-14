@@ -1,6 +1,13 @@
-import { ShieldCheck, ArrowUpRight, Certificate } from "@phosphor-icons/react/dist/ssr";
+import {
+  ShieldCheck,
+  ArrowUpRight,
+  Certificate,
+  Receipt,
+  Percent,
+} from "@phosphor-icons/react/dist/ssr";
 import { useLocale } from "next-intl";
 import { Reveal } from "./Reveal";
+import { CAMPAIGN_URL } from "@/lib/links";
 
 const OPERATIONAL = "0xB41C38818a18b736867D9640f0B191b7890Da136";
 const EMERGENCY = "0x8c5F869e1a5A39F378612d69c32E84d0114ab7C5";
@@ -35,6 +42,15 @@ export function Governance() {
     legalBody: isEs
       ? "ReFi Colombia Foundation, registrada en Próspera ZEDE (Honduras)."
       : "ReFi Colombia Foundation, registered in Próspera ZEDE (Honduras).",
+    reportsTitle: isEs ? "Reportes" : "Reporting",
+    reportsBody: isEs
+      ? "Cada transferencia se publica en la página de donaciones: a qué fundación va, el monto y el enlace a la transacción. Todas las entradas y salidas son verificables onchain."
+      : "Every transfer is published on the donations page: which foundation receives it, the amount and the transaction link. All inflows and outflows are verifiable onchain.",
+    reportsLink: isEs ? "Ver reportes" : "See reports",
+    feesTitle: isEs ? "Comisión" : "Fees",
+    feesBody: isEs
+      ? "0% para ReFi Colombia. El 100% de las donaciones llega a la emergencia."
+      : "0% for ReFi Colombia. 100% of donations reach the emergency.",
   };
 
   return (
@@ -113,17 +129,48 @@ export function Governance() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.1}>
-          <div className="mt-5 flex items-start gap-4 rounded-[var(--radius-card)] border border-line bg-bg-elev p-6">
-            <Certificate size={24} weight="light" className="mt-0.5 shrink-0 text-accent" />
-            <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-fg-faint">
+        <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <Reveal delay={0.1}>
+            <div className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-bg-elev p-6">
+              <Certificate size={24} weight="light" className="text-accent" />
+              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-fg-faint">
                 {t.legalTitle}
               </p>
-              <p className="mt-1.5 text-base text-fg">{t.legalBody}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-fg">{t.legalBody}</p>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+
+          <Reveal delay={0.14}>
+            <div className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-bg-elev p-6">
+              <Receipt size={24} weight="light" className="text-accent" />
+              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-fg-faint">
+                {t.reportsTitle}
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">
+                {t.reportsBody}
+              </p>
+              <a
+                href={CAMPAIGN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-1 text-sm text-accent transition-colors hover:text-fg"
+              >
+                {t.reportsLink}
+                <ArrowUpRight size={14} weight="bold" />
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <div className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-bg-elev p-6">
+              <Percent size={24} weight="light" className="text-accent" />
+              <p className="mt-4 text-xs uppercase tracking-[0.18em] text-fg-faint">
+                {t.feesTitle}
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-fg">{t.feesBody}</p>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

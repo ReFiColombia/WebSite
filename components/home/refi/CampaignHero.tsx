@@ -1,5 +1,11 @@
 import Image from "next/image";
-import { Warning, ArrowUpRight, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import {
+  Warning,
+  ArrowUpRight,
+  ArrowRight,
+  Percent,
+  ShieldCheck,
+} from "@phosphor-icons/react/dist/ssr";
 import { useTranslations } from "next-intl";
 import { CAMPAIGN_URL } from "@/lib/links";
 
@@ -22,6 +28,18 @@ export function CampaignHero() {
           <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted md:text-lg">
             {t("trust")}
           </p>
+
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 px-3.5 py-1.5 text-sm font-medium text-fg">
+              <Percent size={14} weight="bold" className="text-accent" />
+              {t("zeroFees")}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-sm text-fg-muted">
+              <ShieldCheck size={14} weight="fill" className="text-accent" />
+              {t("onchainVerifiable")}
+            </span>
+          </div>
+
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href={CAMPAIGN_URL}

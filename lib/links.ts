@@ -3,6 +3,7 @@
 
 export const CAMPAIGN_URL = "https://dona.reficolombia.org";
 export const JOIN_URL = "https://luma.com/reficolombiapublic";
+export const TELEGRAM_URL = "https://t.me/reficolombia";
 export const SUBSIDIES_APP_URL = "https://subsidios.reficolombia.org";
 export const DUNE_DASHBOARD_URL = "https://dune.com/reficolombia/refi-colombia";
 
