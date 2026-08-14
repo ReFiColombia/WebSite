@@ -4,15 +4,42 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X, ArrowUpRight, HeartStraight } from "@phosphor-icons/react";
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { CAMPAIGN_URL } from "@/lib/links";
 
 const STORAGE_KEY = "refi-campaign-terremoto-2026-08";
 
+type Lang = "es" | "en";
+
+const COPY: Record<Lang, {
+  badge: string;
+  title: string;
+  body: string;
+  donate: string;
+  dismiss: string;
+}> = {
+  es: {
+    badge: "Emergencia · Terremoto",
+    title: "Ayuda a Colombia tras el terremoto",
+    body: "El 10 de agosto de 2026 un terremoto de magnitud 7.4 golpeó a Colombia. ReFi Colombia recibe y administra las donaciones onchain en USDC o USDT sobre cinco redes, y cada aporte es verificable públicamente.",
+    donate: "Donar ahora",
+    dismiss: "Ahora no",
+  },
+  en: {
+    badge: "Emergency · Earthquake",
+    title: "Help Colombia after the earthquake",
+    body: "On August 10, 2026 a magnitude 7.4 earthquake struck Colombia. ReFi Colombia receives and manages donations onchain in USDC or USDT across five networks, and every contribution is publicly verifiable.",
+    donate: "Donate now",
+    dismiss: "Not now",
+  },
+};
+
 export function CampaignPopup() {
-  const t = useTranslations("Home.campaign");
+  const pageLocale = useLocale();
+  const [lang, setLang] = useState<Lang>(pageLocale === "en" ? "en" : "es");
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+  const c = COPY[lang];
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -42,7 +69,7 @@ export function CampaignPopup() {
         >
           <button
             type="button"
-            aria-label={t("dismiss")}
+            aria-label={c.dismiss}
             onClick={dismiss}
             className="absolute inset-0 bg-bg/70 backdrop-blur-sm"
           />
@@ -58,17 +85,48 @@ export function CampaignPopup() {
           >
             <div className="rule-aurora" style={{ opacity: 1 }} />
 
-            <button
-              type="button"
-              onClick={dismiss}
-              aria-label={t("dismiss")}
-              className="absolute right-4 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg-muted transition-colors hover:text-fg"
-            >
-              <X size={18} />
-            </button>
+            <div className="relative h-40 w-full overflow-hidden sm:h-44">
+              <Image
+                src="/brand/campaign.jpg"
+                alt="DonaOnchain - We stand with Colombia"
+                fill
+                sizes="(max-width: 640px) 100vw, 512px"
+                className="object-cover"
+                priority
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg-elev via-transparent to-transparent" />
+            </div>
 
-            <div className="p-7 md:p-9">
-              <div className="flex items-center gap-3 pr-12">
+            <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-bg/50 p-1 backdrop-blur-sm">
+              <div className="inline-flex items-center rounded-full border border-line p-0.5">
+                {(["es", "en"] as Lang[]).map((l) => (
+                  <button
+                    key={l}
+                    type="button"
+                    onClick={() => setLang(l)}
+                    aria-pressed={lang === l}
+                    className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide transition-colors duration-200 ${
+                      lang === l
+                        ? "bg-bg-elev-2 text-fg"
+                        : "text-fg-faint hover:text-fg-muted"
+                    }`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={dismiss}
+                aria-label={c.dismiss}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-fg-muted transition-colors hover:text-fg"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="p-7 pt-6 md:p-9 md:pt-7">
+              <div className="flex items-center gap-3">
                 <Image
                   src="/brand/logo-circular.png"
                   alt=""
@@ -79,16 +137,16 @@ export function CampaignPopup() {
                 />
                 <span className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.16em] text-aurora">
                   <HeartStraight size={14} weight="fill" className="shrink-0" />
-                  {t("badge")}
+                  {c.badge}
                 </span>
               </div>
 
               <h2 className="mt-6 font-display text-3xl font-medium leading-[1.08] tracking-tight text-fg md:text-4xl">
-                {t("title")}
+                {c.title}
               </h2>
 
               <p className="mt-4 text-base leading-relaxed text-fg-muted">
-                {t("body")}
+                {c.body}
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -99,7 +157,7 @@ export function CampaignPopup() {
                   onClick={dismiss}
                   className="btn-aurora group inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-medium"
                 >
-                  {t("donate")}
+                  {c.donate}
                   <ArrowUpRight
                     size={18}
                     weight="bold"
@@ -111,7 +169,7 @@ export function CampaignPopup() {
                   onClick={dismiss}
                   className="rounded-full px-5 py-3.5 text-base text-fg-muted transition-colors hover:text-fg"
                 >
-                  {t("dismiss")}
+                  {c.dismiss}
                 </button>
               </div>
             </div>

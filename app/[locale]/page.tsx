@@ -1,4 +1,5 @@
 import { unstable_setRequestLocale } from "next-intl/server";
+import { CampaignHero } from "@/components/home/refi/CampaignHero";
 import { Hero } from "@/components/home/refi/Hero";
 import { WhatIsRefi } from "@/components/home/refi/WhatIsRefi";
 import { Principles } from "@/components/home/refi/Principles";
@@ -17,6 +18,7 @@ export default function Home({
   unstable_setRequestLocale(locale);
   return (
     <main>
+      <CampaignHero />
       <Hero />
       <WhatIsRefi />
       <Principles />

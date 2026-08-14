@@ -88,7 +88,10 @@
       "donate": "Donar ahora",
       "dismiss": "Ahora no",
       "bannerText": "Emergencia: terremoto en Colombia",
-      "bannerShort": "Terremoto en Colombia"
+      "bannerShort": "Terremoto en Colombia",
+      "eyebrow": "Respuesta a la emergencia",
+      "trust": "Donaciones onchain en USDC o USDT sobre cinco redes, recibidas y administradas por ReFi Colombia, y verificables públicamente en la blockchain.",
+      "learnMore": "Cómo se manejan los fondos"
     }
   },
   "Landing": {
@@ -248,7 +251,7 @@
     "amount": "Cantidad",
     "buttons": {
       "whichNetwork": "Siguiente",
-      "donate": "Donar a ReFi Medellín"
+      "donate": "Donar a ReFi Colombia"
     },
     "messages": {
       "incorrectNetwork": "Estas en la red equivocada",
