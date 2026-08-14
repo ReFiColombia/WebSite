@@ -54,7 +54,7 @@ export function Governance() {
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-2">
-          <Reveal>
+          <Reveal className="order-2">
             <div className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-bg-elev p-7">
               <div className="rule-aurora mb-6 w-10 rounded-full" />
               <h3 className="font-display text-2xl text-fg">{t.emergencyTitle}</h3>
@@ -73,7 +73,7 @@ export function Governance() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.06}>
+          <Reveal delay={0.06} className="order-1">
             <div className="flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-bg-elev p-7">
               <div className="rule-aurora mb-6 w-10 rounded-full" />
               <h3 className="font-display text-2xl text-fg">{t.opTitle}</h3>

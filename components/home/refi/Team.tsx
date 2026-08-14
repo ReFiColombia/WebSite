@@ -1,9 +1,5 @@
 import Image from "next/image";
-import {
-  XLogo,
-  LinkedinLogo,
-  TelegramLogo,
-} from "@phosphor-icons/react/dist/ssr";
+import { XLogo, TelegramLogo } from "@phosphor-icons/react/dist/ssr";
 import type { Icon } from "@phosphor-icons/react";
 import { useLocale } from "next-intl";
 import { Reveal } from "./Reveal";
@@ -25,7 +21,6 @@ const MEMBERS: Member[] = [
     roleEn: "Lead",
     socials: [
       { icon: XLogo, href: "https://x.com/JuanJGiraldoC", label: "X" },
-      { icon: LinkedinLogo, href: "https://www.linkedin.com/in/juancamp1987/", label: "LinkedIn" },
     ],
   },
   {
@@ -35,7 +30,6 @@ const MEMBERS: Member[] = [
     roleEn: "Advisory",
     socials: [
       { icon: XLogo, href: "https://x.com/TerezaBizkova", label: "X" },
-      { icon: LinkedinLogo, href: "https://www.linkedin.com/in/tereza-bizkova/", label: "LinkedIn" },
     ],
   },
   {
@@ -45,7 +39,6 @@ const MEMBERS: Member[] = [
     roleEn: "Legal",
     socials: [
       { icon: XLogo, href: "https://x.com/ximemonclou", label: "X" },
-      { icon: LinkedinLogo, href: "https://www.linkedin.com/in/ximenamonclou/", label: "LinkedIn" },
     ],
   },
   {
