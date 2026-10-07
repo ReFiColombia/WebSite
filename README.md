@@ -17,7 +17,7 @@ Locales are `es` (default) and `en`.
 
 ## Stack
 
-Next.js 13 (App Router), Tailwind, next-intl, wagmi 1 with viem, Apollo Client
+Next.js 14 (App Router), Tailwind, next-intl, wagmi 1 with viem, Apollo Client
 for the lending subgraphs.
 
 ## Run it
