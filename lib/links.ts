@@ -7,10 +7,10 @@ export const TELEGRAM_URL = "https://t.me/reficolombia";
 export const SUBSIDIES_APP_URL = "https://subsidios.reficolombia.org";
 export const DUNE_DASHBOARD_URL = "https://dune.com/reficolombia/refi-colombia";
 
-// Onchain figures from the ReFi Colombia Subsidies dashboard on Dune
-// (Celo SubsidyProgram contract). Verifiable at DUNE_DASHBOARD_URL.
+// Fallback figures, used only when the subgraph cannot be reached or is
+// behind (see lib/subsidyStats.ts). Taken from the old subgraph on 2026-10-07.
 export const SUBSIDY_STATS = {
-  distributed: "23.5M",
+  distributed: "27.0M",
   fundsAdded: "36.1M",
   recipients: 78,
   token: "COPm",
