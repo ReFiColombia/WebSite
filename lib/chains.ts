@@ -10,5 +10,7 @@ export const RPC_URLS: Record<number, string> = {
   11155111: process.env.NEXT_PUBLIC_RPC_SEPOLIA || 'https://ethereum-sepolia-rpc.publicnode.com',
 };
 
+// Reown (WalletConnect) project "ReFi Colombia". The id is public by design;
+// the allowed domains are set in the Reown dashboard.
 export const WALLETCONNECT_PROJECT_ID =
-  process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '7326ebd4b7670327335ce12403d94bec';
+  process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '77abe7036274d80b2d5b472531d0ad31';
