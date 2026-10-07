@@ -22,7 +22,7 @@ import errorIcon from '@/assets/icons/exclamation.png'
 import checkIcon from '@/assets/icons/check-circle.png'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import { useLocale, useTranslations } from 'next-intl'
-import { DONATIONS_ENABLED } from '@/lib/donations'
+import { isDonationNetworkEnabled, POLYGON_DONATIONS_ENABLED } from '@/lib/donations'
 import { CAMPAIGN_URL } from '@/lib/links'
 
 type donationData = {
@@ -605,9 +605,9 @@ function Page () {
 
   if (!isMounted) return null
 
-  // Direct donations stay closed until every network has a verified treasury
-  // address configured. Sending without one would lose the funds.
-  if (!DONATIONS_ENABLED) {
+  // Networks without a verified treasury address stay closed. Sending there
+  // would lose the funds.
+  if (!isDonationNetworkEnabled(searchParams.network || chain?.name)) {
     const es = locale === 'es'
     return (
       <main className='flex min-h-dvh w-full items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
@@ -617,8 +617,8 @@ function Page () {
           </h1>
           <p className='mt-4 text-fg-muted'>
             {es
-              ? 'Las donaciones directas desde esta página están en mantenimiento. Mientras tanto puedes donar onchain, con 0% de comisión, en nuestra campaña verificada.'
-              : 'Direct donations from this page are under maintenance. Meanwhile you can donate onchain, with 0% fees, through our verified campaign.'}
+              ? 'Todavía no recibimos donaciones directas en esta red. Cambia tu wallet a Celo, Ethereum, Optimism o Arbitrum, o dona onchain con 0% de comisión en nuestra campaña verificada.'
+              : 'We do not take direct donations on this network yet. Switch your wallet to Celo, Ethereum, Optimism or Arbitrum, or donate onchain with 0% fees through our verified campaign.'}
           </p>
           <a
             href={CAMPAIGN_URL}
@@ -731,7 +731,7 @@ function Page () {
             onChange={e => setNetworkValue(e.target.value)}
           >
             <option value='ethereum'>Ethereum</option>
-            <option value='polygon'>Polygon</option>
+            {POLYGON_DONATIONS_ENABLED && <option value='polygon'>Polygon</option>}
             <option value='optimism'>Optimism</option>
             <option value='arbitrum'>Arbitrum</option>
             <option value='celo'>Celo</option>

@@ -36,8 +36,9 @@ reficolombia.org on every push, so work on a branch and open a pull request.
 All settings are documented in [.env.example](./.env.example). The ones that
 matter most:
 
-- **Donation recipients.** The `/donate` form stays closed until all five
-  `NEXT_PUBLIC_*_RECIPENT` addresses are set. There is no default on purpose.
+- **Donation recipients.** `/donate` sends to the ReFi Colombia Safe on
+  Ethereum, Celo, Optimism and Arbitrum (see `lib/donations.ts`). Polygon is
+  closed until the Safe is deployed there.
 - **Contracts.** Lending contract, schema and EAS addresses have defaults in
   `constants/index.ts`.
 - **Subgraphs.** Lending data comes from The Graph Studio. URLs are built in
