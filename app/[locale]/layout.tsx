@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar'
 import { CampaignBanner } from '@/components/home/refi/CampaignBanner'
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Outfit } from 'next/font/google'
 import Providers from './providers'
 import { NextIntlClientProvider } from 'next-intl'
@@ -87,10 +87,13 @@ export async function generateMetadata ({
       site: '@RefiColombia',
       images: ['/og.jpg']
     },
-    robots: { index: true, follow: true },
-    themeColor: '#0e1220',
-    colorScheme: 'dark'
+    robots: { index: true, follow: true }
   }
+}
+
+export const viewport: Viewport = {
+  themeColor: '#0e1220',
+  colorScheme: 'dark'
 }
 
 // Structured data so search engines know who is behind the site.
