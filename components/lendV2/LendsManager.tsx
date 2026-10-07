@@ -113,7 +113,7 @@ function LendsManager() {
                       ? tokens.tokens.filter(
                           ({ tokenAddress }: { tokenAddress: Address }) =>
                             tokenAddress === lend.token.toLowerCase()
-                        )[0].symbol
+                        )[0]?.symbol ?? 'N/A'
                       : lend.token}
                   </TableCell>
                   <TableCell>
