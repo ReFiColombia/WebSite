@@ -1,5 +1,6 @@
 import { Abi, parseUnits } from 'viem'
 import { erc20ABI, useAccount, useContractWrite, useToken } from 'wagmi'
+import { getDonationRecipient } from '@/lib/donations'
 import usdtAbi from '@/constants/ABI/usdtABI.json'
 
 type address = `0x${string}`
@@ -19,13 +20,7 @@ export default function useTxn (
     address: tokenContract
   })
 
-  const recipents = {
-    Ethereum: process.env.NEXT_PUBLIC_ETHEREUM_RECIPENT,
-    Polygon: process.env.NEXT_PUBLIC_POLYGON_RECIPENT,
-    Celo: process.env.NEXT_PUBLIC_CELO_RECIPENT,
-    'OP Mainnet': process.env.NEXT_PUBLIC_OPTIMISM_RECIPENT,
-    'Arbitrum One': process.env.NEXT_PUBLIC_ARBITRUM_RECIPENT
-  }
+  const recipient = getDonationRecipient(chain)
 
   const {
     data: txnData,
@@ -42,7 +37,7 @@ export default function useTxn (
     account: address,
     functionName: 'transfer',
     args: [
-      recipents[chain],
+      recipient,
       data && amount ? parseUnits(amount.toString(), data.decimals) : BigInt(0)
     ]
   })
@@ -52,7 +47,7 @@ export default function useTxn (
     txnSuccess,
     txnError,
     txnErrorData,
-    sendTransaction,
+    sendTransaction: recipient ? sendTransaction : undefined,
     decimalsLoading,
     decimalSuccess
   }

@@ -7,14 +7,10 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { List, X } from "@phosphor-icons/react";
 import { useLocale } from "next-intl";
-import { useWeb3Modal } from "@web3modal/react";
+import { ConnectWallet } from "@/components/ConnectWallet";
 import { useAccount } from "wagmi";
 import { LanguageToggle } from "@/components/home/refi/LanguageToggle";
 import { TELEGRAM_URL } from "@/lib/links";
-
-function shortAddr(a?: string) {
-  return a ? `${a.slice(0, 6)}...${a.slice(-4)}` : "";
-}
 
 function Navbar() {
   const locale = useLocale();
@@ -22,8 +18,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [solid, setSolid] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { open: openModal } = useWeb3Modal();
-  const { address, isConnected } = useAccount();
+  const { isConnected } = useAccount();
 
   useEffect(() => setMounted(true), []);
   useEffect(() => {
@@ -37,7 +32,7 @@ function Navbar() {
   const links = [
     { label: isEs ? "Inicio" : "Home", href: p("/") },
     { label: isEs ? "Préstamos" : "Lending", href: p("/lend-manager"), wallet: true },
-    { label: isEs ? "Donar" : "Donate", href: p("/donate"), wallet: true },
+    { label: isEs ? "Donar" : "Donate", href: p("/donate"), wallet: false },
     { label: isEs ? "Comunidad" : "Community", href: TELEGRAM_URL, external: true },
     { label: "Blog", href: "https://blog.refimedellin.org/", external: true },
   ];
@@ -93,13 +88,7 @@ function Navbar() {
             ),
           )}
           <LanguageToggle />
-          <button
-            type="button"
-            onClick={() => openModal()}
-            className="btn-aurora rounded-full px-5 py-2 text-sm font-medium transition-transform duration-200 active:scale-[0.97]"
-          >
-            {isConnected ? shortAddr(address) : isEs ? "Conectar" : "Connect"}
-          </button>
+          <ConnectWallet className="btn-aurora rounded-full px-5 py-2 text-sm font-medium transition-transform duration-200 active:scale-[0.97]" />
         </div>
 
         <button
@@ -145,20 +134,7 @@ function Navbar() {
                 ),
               )}
               <div className="mt-5 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(false);
-                    openModal();
-                  }}
-                  className="btn-aurora flex-1 rounded-full px-5 py-3 text-center text-base font-medium"
-                >
-                  {isConnected
-                    ? shortAddr(address)
-                    : isEs
-                      ? "Conectar"
-                      : "Connect"}
-                </button>
+                <ConnectWallet className="btn-aurora flex-1 rounded-full px-5 py-3 text-center text-base font-medium" />
                 <LanguageToggle onNavigate={() => setOpen(false)} />
               </div>
             </div>

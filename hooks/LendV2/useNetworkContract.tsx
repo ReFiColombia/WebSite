@@ -9,6 +9,7 @@ import {
 import { ReFiMedLendContracts } from '@/constants/ReFiMedLendContracts';
 import { useGlobalCurrency } from '@/context/CurrencyContext';
 import { useNetwork } from 'wagmi';
+import { LENDING_SUBGRAPHS } from '@/lib/subgraphs';
 
 export const chainIds = {
   celo: 42220,
@@ -27,21 +28,21 @@ export function useNetworkContractV2() {
       return {
         lendAddress: currency === 'COP' ? ReFiMedLendContracts.celoV2.lendAddress : ReFiMedLendContracts.celo.lendAddress,
         eas: ReFiMedLendContracts.celo.eas,
-        subgraph: 'refimedlending-celo',
+        subgraphUrl: currency === 'COP' ? LENDING_SUBGRAPHS.celoCop : LENDING_SUBGRAPHS.celo,
         schema: currency === 'COP' ? schemaUIDCeloV2 : schemaUIDCelo,
       };
     case chainIds.sepolia:
       return {
         lendAddress:  ReFiMedLendContracts.sepolia.lendAddress,
         eas: ReFiMedLendContracts.sepolia.eas,
-        subgraph: 'refimedlend',
+        subgraphUrl: LENDING_SUBGRAPHS.sepolia,
         schema: schemaUIDSepolia,
       };
     case chainIds.optimism: {
       return {
         lendAddress: ReFiMedLendContracts.optimism.lendAddress,
         eas: ReFiMedLendContracts.optimism.eas,
-        subgraph: 'refimedlending-optimism',
+        subgraphUrl: LENDING_SUBGRAPHS.optimism,
         schema: schemaUIDOptimism,
       };
     }
@@ -49,21 +50,21 @@ export function useNetworkContractV2() {
       return {
         lendAddress: ReFiMedLendContracts.polygon.lendAddress,
         eas: ReFiMedLendContracts.polygon.eas,
-        subgraph: 'refimedlending-polygon',
+        subgraphUrl: LENDING_SUBGRAPHS.polygon,
         schema: schemaUIDPolygon,
       };
     case chainIds.arbitrum:
       return {
         lendAddress: ReFiMedLendContracts.arbitrum.lendAddress,
         eas: ReFiMedLendContracts.arbitrum.eas,
-        subgraph: 'refimedlending-arbitrum',
+        subgraphUrl: LENDING_SUBGRAPHS.arbitrum,
         schema: schemaUIDArbitrum,
       };
     default:
       return {
         lendAddress: ReFiMedLendContracts.celo.lendAddress,
         eas: ReFiMedLendContracts.celo.eas,
-        subgraph: 'refimedlending-celo',
+        subgraphUrl: LENDING_SUBGRAPHS.celo,
         schema: schemaUIDCelo,
       };
   }

@@ -21,7 +21,8 @@ import { Chains } from '@/constants/chains';
 import { useIsAdmin } from '@/hooks/LendV2/useIsAdmin';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { useNetwork, useSwitchNetwork } from 'wagmi';
+import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
+import { useLocale } from 'next-intl';
 import { useGlobalCurrency } from '@/context/CurrencyContext';
 import { ProtocolInfoV2 } from '@/components/lendV2/ProtocolInfoV2';
 import { QuotaManagerV2 } from '@/components/lendV2/QuotaManagerV2';
@@ -36,6 +37,10 @@ function Page() {
   const { data: isAdmin, isLoading: isAdminLoading } = useIsAdmin();
 
   const { chain } = useNetwork();
+  const { isConnected } = useAccount();
+  const locale = useLocale();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const { push } = useRouter();
   useEffect(() => {
     const currentChain =
@@ -52,6 +57,23 @@ function Page() {
         : null;
     setSelectedChain(currentChain);
   }, [chain]);
+  if (!mounted) return null;
+  if (!isConnected) {
+    return (
+      <main className='flex min-h-dvh items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
+        <div className='w-full max-w-lg rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-8 text-center'>
+          <h1 className='font-display text-3xl'>
+            {locale === 'es' ? 'Conecta tu wallet' : 'Connect your wallet'}
+          </h1>
+          <p className='mt-4 text-fg-muted'>
+            {locale === 'es'
+              ? 'El panel de préstamos necesita una wallet conectada. Usa el botón Conectar en la parte superior.'
+              : 'The lending panel needs a connected wallet. Use the Connect button at the top.'}
+          </p>
+        </div>
+      </main>
+    );
+  }
   if (isLoading) {
     return (
       <main className='flex px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen justify-center items-center'>
@@ -137,7 +159,7 @@ function Page() {
             </SelectContent>
           </Select>
         </div>
-        <Button onClick={() => push('/community')} variant='outline'>
+        <Button onClick={() => push(`/${locale}/community`)} variant='outline'>
           Lending dashboard
         </Button>
         {!!isAdmin && !isAdminLoading && (

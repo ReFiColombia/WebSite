@@ -2,11 +2,11 @@ import createMiddleware from 'next-intl/middleware';
  
 export default createMiddleware({
   // A list of all locales that are supported
-  locales: ['en', 'es'],
+  locales: ['es', 'en'],
     
-//   localeDetection: true,
-  // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
-  defaultLocale: 'en'
+  // Spanish first: the audience is Colombian. Visitors whose browser asks for
+  // English are still sent to /en by the built-in locale detection.
+  defaultLocale: 'es'
 });
  
 export const config = {

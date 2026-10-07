@@ -21,7 +21,9 @@ import { faClone } from '@fortawesome/free-solid-svg-icons'
 import errorIcon from '@/assets/icons/exclamation.png'
 import checkIcon from '@/assets/icons/check-circle.png'
 import BordeBottom from '@/assets/images/Borde-ReFi.png'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { DONATIONS_ENABLED } from '@/lib/donations'
+import { CAMPAIGN_URL } from '@/lib/links'
 
 type donationData = {
   token: Address
@@ -49,6 +51,7 @@ type Token = {
 
 function Page () {
   const t = useTranslations('Donate')
+  const locale = useLocale()
   const params = useSearchParams()
   const searchParams: Params = useMemo(
     () => ({ network: params.get('network') as availableChains }),
@@ -601,6 +604,34 @@ function Page () {
   }
 
   if (!isMounted) return null
+
+  // Direct donations stay closed until every network has a verified treasury
+  // address configured. Sending without one would lose the funds.
+  if (!DONATIONS_ENABLED) {
+    const es = locale === 'es'
+    return (
+      <main className='flex min-h-dvh w-full items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
+        <div className='w-full max-w-lg rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-8 text-center'>
+          <h1 className='font-display text-3xl'>
+            {es ? 'Dona a ReFi Colombia' : 'Donate to ReFi Colombia'}
+          </h1>
+          <p className='mt-4 text-fg-muted'>
+            {es
+              ? 'Las donaciones directas desde esta página están en mantenimiento. Mientras tanto puedes donar onchain, con 0% de comisión, en nuestra campaña verificada.'
+              : 'Direct donations from this page are under maintenance. Meanwhile you can donate onchain, with 0% fees, through our verified campaign.'}
+          </p>
+          <a
+            href={CAMPAIGN_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn-aurora mt-7 inline-flex rounded-full px-6 py-3 text-sm font-medium'
+          >
+            {es ? 'Donar ahora' : 'Donate now'}
+          </a>
+        </div>
+      </main>
+    )
+  }
 
   return (
     <main className='min-h-screen  bg-[#1B2731] w-full flex place-items-center place-content-center'>

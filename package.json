@@ -1,5 +1,5 @@
 {
-  "name": "@refi-medellin/website",
+  "name": "@refi-colombia/website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -34,8 +34,6 @@
     "@types/node": "20.5.3",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "@web3modal/ethereum": "^2.7.1",
-    "@web3modal/react": "^2.7.1",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
     "class-variance-authority": "^0.7.0",
@@ -68,7 +66,6 @@
     "typescript": "5.1.6",
     "viem": "^1.10.8",
     "wagmi": "^1.4.1",
-    "web3": "^4.1.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {

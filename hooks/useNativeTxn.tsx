@@ -1,16 +1,10 @@
 import { parseEther } from 'viem'
 import { useSendTransaction } from 'wagmi'
+import { getDonationRecipient } from '@/lib/donations'
 
 function useNativeTxn (amount: number, chain:'Ethereum' | 'Polygon' | 'Celo' | 'OP Mainnet' | 'Arbitrum One') {
 
-  const recipents = {
-    Ethereum: process.env.NEXT_PUBLIC_ETHEREUM_RECIPENT,
-    Polygon: process.env.NEXT_PUBLIC_POLYGON_RECIPENT,
-    Celo: process.env.NEXT_PUBLIC_CELO_RECIPENT,
-    'OP Mainnet': process.env.NEXT_PUBLIC_OPTIMISM_RECIPENT,
-    'Arbitrum One': process.env.NEXT_PUBLIC_ARBITRUM_RECIPENT
-  }
-
+  const recipient = getDonationRecipient(chain)
 
   const {
     data: txnData,
@@ -20,7 +14,7 @@ function useNativeTxn (amount: number, chain:'Ethereum' | 'Polygon' | 'Celo' | '
     error: txnErrorData,
     sendTransactionAsync: sendTransaction
   } = useSendTransaction({
-    to: recipents[chain],
+    to: recipient,
     value: amount ? parseEther(amount.toString()) : parseEther('0')
   })
   return {
@@ -29,7 +23,7 @@ function useNativeTxn (amount: number, chain:'Ethereum' | 'Polygon' | 'Celo' | '
     txnSuccess,
     txnError,
     txnErrorData,
-    sendTransaction
+    sendTransaction: recipient ? sendTransaction : undefined
   }
 }
 

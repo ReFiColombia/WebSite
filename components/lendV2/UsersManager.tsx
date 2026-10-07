@@ -153,7 +153,7 @@ function UsersManager() {
           </Button>
         </div>
       </CardContent>
-      {isAddress(currentUser ?? '') && !isLoadingUser && isErrorUser && (
+      {isAddress(currentUser ?? '') && !isLoadingUser && Array.isArray(user) && (
         <CardFooter className='flex flex-col gap-4 w-full   items-start'>
           <h3>User info</h3>
           <div className='grid grid-cols-2 w-full'>

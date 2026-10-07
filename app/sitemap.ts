@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 
 const BASE = "https://reficolombia.org";
-const routes = ["", "/donate", "/lend-manager", "/community"];
+// Only public pages. The lending panels need a wallet and are not indexed.
+const routes = ["", "/donate"];
 const locales = ["es", "en"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
