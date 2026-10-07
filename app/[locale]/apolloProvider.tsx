@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { useNetworkContractV2 } from '@/hooks/LendV2/useNetworkContract';
-import { useGlobalCurrency } from '@/context/CurrencyContext';
 
 export default function ApolloProviderNetworkBased({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { subgraph } = useNetworkContractV2();
-  const { currency } = useGlobalCurrency();
+  const { subgraphUrl } = useNetworkContractV2();
 
-  const subgraphStudio = currency === 'COP' ? '102458' : '72352';
+  // One client per subgraph. Recreating it on every render threw the cache away.
+  const client = useMemo(
+    () => new ApolloClient({ uri: subgraphUrl, cache: new InMemoryCache() }),
+    [subgraphUrl]
+  );
 
-  // Sustituye la subgraph ID según currency:
-
-  const client = new ApolloClient({
-    uri: `https://api.studio.thegraph.com/query/${subgraphStudio}/${subgraph}/version/latest`,
-    cache: new InMemoryCache(),
-  });
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }

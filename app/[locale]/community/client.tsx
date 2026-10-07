@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Web3 from 'web3';
 import erc1155ABI from '@/constants/ABI/erc1155ABI.json';
-import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi';
+import { useAccount, useNetwork, usePublicClient, useSwitchNetwork } from 'wagmi';
+import { polygon } from 'wagmi/chains';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Fund } from '@/components/lendV2/Fund';
 import { Lend } from '@/components/lendV2/Lend';
@@ -13,7 +13,7 @@ import { UserInfo } from '@/components/lendV2/UserInfo';
 import { CurrentLends } from '@/components/lendV2/CurrentLends';
 import { CurrentSignatures } from '@/components/lendV2/CurrentSignatures';
 import { useGetUser } from '@/hooks/LendV2/useGetUser';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Chains } from '@/constants/chains';
 import { toast } from '@/components/ui/use-toast';
 import { NetworkModal } from '@/components/loanPanel/NetworkModal';
@@ -38,6 +38,7 @@ export default function Page() {
   const { switchNetworkAsync } = useSwitchNetwork();
   const [hasNft, setHasNft] = useState(false);
   const t = useTranslations('ExclusiveContent');
+  const locale = useLocale();
   const { address, isConnected } = useAccount();
   const [isMounted, setIsMounted] = useState(false);
   const { push } = useRouter();
@@ -111,27 +112,19 @@ export default function Page() {
     isError: isUserError,
   } = useGetUser(address!);
   const tokenIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rpc.ankr.com/polygon/ce29f559c4c7897dd275a46c6d99296b8efe3a3810193fda29402c8edb38f88c')
-  )
-
-  const contract = new web3.eth.Contract(
-    erc1155ABI,
-    '0x6500dD04e67925A94975D787eF08E2d7786649D9'
-  );
+  // Membership NFT (ERC-1155) lives on Polygon. Read it with the shared
+  // public client instead of a second web3 library and a private RPC key.
+  const polygonClient = usePublicClient({ chainId: polygon.id });
   async function getNFT() {
+    if (!address) return false;
     try {
-      const data = await contract.methods
-        //TODO: FIX THIS TYPE
-        // @ts-ignore
-        .balanceOfBatch(Array(tokenIds.length).fill(address), tokenIds)
-        .call();
-      data &&
-        data.forEach((nft: bigint) => {
-          if (nft > BigInt(0)) {
-            setHasNft(true);
-          }
-        });
+      const data = (await polygonClient.readContract({
+        address: '0x6500dD04e67925A94975D787eF08E2d7786649D9',
+        abi: erc1155ABI,
+        functionName: 'balanceOfBatch',
+        args: [Array(tokenIds.length).fill(address), tokenIds.map((id) => BigInt(id))],
+      })) as bigint[];
+      setHasNft(data.some((balance) => balance > BigInt(0)));
     } catch (error) {
       return false;
     }
@@ -141,7 +134,23 @@ export default function Page() {
     if (!isMounted) setIsMounted(true);
   }, [address]);
 
-  if (!isConnected && isMounted) return redirect('/');
+  if (!isMounted) return null;
+  if (!isConnected) {
+    return (
+      <main className='flex min-h-dvh items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
+        <div className='w-full max-w-lg rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-8 text-center'>
+          <h1 className='font-display text-3xl'>
+            {locale === 'es' ? 'Conecta tu wallet' : 'Connect your wallet'}
+          </h1>
+          <p className='mt-4 text-fg-muted'>
+            {locale === 'es'
+              ? 'El panel de préstamos necesita una wallet conectada. Usa el botón Conectar en la parte superior.'
+              : 'The lending panel needs a connected wallet. Use the Connect button at the top.'}
+          </p>
+        </div>
+      </main>
+    );
+  }
   if (showNetworkModal) {
     return <NetworkModal onNetworkSelect={handleNetworkChange} />;
   }
@@ -207,7 +216,7 @@ export default function Page() {
           <Button
             variant='outline'
             className='justify-self-end'
-            onClick={() => push('lend-manager')}
+            onClick={() => push(`/${locale}/lend-manager`)}
           >
             Admin manager
           </Button>
