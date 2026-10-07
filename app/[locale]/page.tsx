@@ -10,14 +10,19 @@ import { Governance } from "@/components/home/refi/Governance";
 import { Team } from "@/components/home/refi/Team";
 import { Community } from "@/components/home/refi/Community";
 import { Footer } from "@/components/home/refi/Footer";
+import { getSubsidyStats } from "@/lib/subsidyStats";
 import { CampaignPopup } from "@/components/home/refi/CampaignPopup";
 
-export default function Home({
+// Rebuild the page hourly so the subsidy figures stay current.
+export const revalidate = 3600;
+
+export default async function Home({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
+  const subsidyStats = await getSubsidyStats();
   return (
     <main>
       <CampaignHero />
@@ -26,7 +31,7 @@ export default function Home({
       <Principles />
       <Technology />
       <Nodes />
-      <Transparency />
+      <Transparency stats={subsidyStats} />
       <Governance />
       <Team />
       <Community />

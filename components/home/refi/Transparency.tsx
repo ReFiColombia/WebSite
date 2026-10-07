@@ -3,17 +3,17 @@ import { useTranslations } from "next-intl";
 import { Reveal } from "./Reveal";
 import {
   REPORTS,
-  SUBSIDY_STATS,
   SUBSIDIES_APP_URL,
   DUNE_DASHBOARD_URL,
 } from "@/lib/links";
+import type { SubsidyStats } from "@/lib/subsidyStats";
 
-export function Transparency() {
+export function Transparency({ stats: s }: { stats: SubsidyStats }) {
   const t = useTranslations("Home.transparency");
   const stats = [
-    { value: SUBSIDY_STATS.distributed, unit: SUBSIDY_STATS.token, label: t("statDistributed") },
-    { value: SUBSIDY_STATS.fundsAdded, unit: SUBSIDY_STATS.token, label: t("statFunds") },
-    { value: String(SUBSIDY_STATS.recipients), unit: "", label: t("statRecipients") },
+    { value: s.distributed, unit: s.token, label: t("statDistributed") },
+    { value: s.fundsAdded, unit: s.token, label: t("statFunds") },
+    { value: String(s.recipients), unit: "", label: t("statRecipients") },
   ];
 
   return (
