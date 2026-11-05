@@ -71,7 +71,7 @@ function Navbar() {
                 key={l.href}
                 aria-disabled="true"
                 title={lockTitle}
-                className="cursor-not-allowed select-none text-sm text-fg-faint/40"
+                className="cursor-not-allowed select-none text-sm text-fg-faint opacity-50"
               >
                 {l.label}
               </span>
@@ -116,7 +116,7 @@ function Navbar() {
                     key={l.href}
                     aria-disabled="true"
                     title={lockTitle}
-                    className="cursor-not-allowed select-none border-b border-line py-3.5 text-base text-fg-faint/40"
+                    className="cursor-not-allowed select-none border-b border-line py-3.5 text-base text-fg-faint opacity-50"
                   >
                     {l.label}
                   </span>

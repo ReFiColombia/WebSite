@@ -20,7 +20,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClone } from '@fortawesome/free-solid-svg-icons'
 import errorIcon from '@/assets/icons/exclamation.png'
 import checkIcon from '@/assets/icons/check-circle.png'
-import BordeBottom from '@/assets/images/Borde-ReFi.png'
 import { useLocale, useTranslations } from 'next-intl'
 import { isDonationNetworkEnabled, POLYGON_DONATIONS_ENABLED } from '@/lib/donations'
 import { CAMPAIGN_URL } from '@/lib/links'
@@ -610,7 +609,7 @@ function Page () {
   if (!isDonationNetworkEnabled(searchParams.network || chain?.name)) {
     const es = locale === 'es'
     return (
-      <main className='flex min-h-dvh w-full items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
+      <main className='flex min-h-screen w-full items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
         <div className='w-full max-w-lg rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-8 text-center'>
           <h1 className='font-display text-3xl'>
             {es ? 'Dona a ReFi Colombia' : 'Donate to ReFi Colombia'}
@@ -634,7 +633,7 @@ function Page () {
   }
 
   return (
-    <main className='min-h-screen  bg-[#1B2731] w-full flex place-items-center place-content-center'>
+    <main className='mesh-aurora relative flex min-h-screen w-full items-center justify-center px-5 pt-32 pb-20 text-fg'>
       <Modal show={showModal}>
         {(isSendingTXN || awaitTxnLoading) && (
           <>
@@ -643,7 +642,7 @@ function Page () {
             </h1>
             <div className='w-full items-center justify-center flex gap-4  flex-col'>
               <div
-                className='inline-block h-24 w-24 font-bold text-[#43F07E] justify-center items-center animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
+                className='inline-block h-24 w-24 font-bold text-aurora-blue justify-center items-center animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
                 role='status'
               >
                 <span className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'>
@@ -665,7 +664,7 @@ function Page () {
             <div className='flex flex-row w-full items-center justify-center gap-2'>
               <Link
                 target='_blank'
-                className='overflow-hidden p-2 border-[1px] border-solid text-sm rounded-md border-gray-500 h-full font-light'
+                className='overflow-hidden rounded-full border border-line-strong px-3 py-2 text-sm font-light text-fg-muted hover:text-fg'
                 href={`${chain?.blockExplorers?.default.url}${getExplorerLink(
                   chain?.name
                 )}${awaitTxn.transactionHash}`}
@@ -676,13 +675,13 @@ function Page () {
                 onClick={() =>
                   navigator.clipboard.writeText(awaitTxn.transactionHash)
                 }
-                className='border-[1px] border-solid rounded-md h-full  border-gray-500 p-1'
+                className='rounded-full border border-line-strong px-2.5 py-1.5 text-fg-muted hover:text-fg'
               >
                 <FontAwesomeIcon icon={faClone} />
               </button>
             </div>
             <button
-              className='border-2 border-[#374151] px-4 py-2 rounded-md'
+              className='rounded-full border border-line-strong px-5 py-2 text-sm hover:bg-white/5'
               onClick={handleOnCloseModal}
             >
               {t('modal.state.success.close')}
@@ -696,7 +695,7 @@ function Page () {
               {t('modal.state.error.title')}
             </h1>
             <button
-              className='border-2 border-[#374151] px-4 py-2 rounded-md'
+              className='rounded-full border border-line-strong px-5 py-2 text-sm hover:bg-white/5'
               onClick={handleOnCloseModal}
             >
               {t('modal.state.error.close')}
@@ -708,23 +707,23 @@ function Page () {
         <span className='flex flex-row justify-between items-center w-full'>
           <h2>{t('title')}</h2>
           <button
-            className='text-black font-bold'
+            className='font-bold text-fg-muted hover:text-fg'
             onClick={() => setIsChangingNetwork(false)}
           >
             x
           </button>
         </span>
-        <div className='border-b-[1px] border-[#4571E1] w-full' />
+        <div className='rule-aurora w-full' />
         <form
           onSubmit={handleOnChangeNetwork}
           className='flex flex-col gap-2 w-full justify-center items-center'
         >
-          <label htmlFor='' className='text-sm w-full'>
+          <label htmlFor='' className='w-full text-sm text-fg-muted'>
             {t('whichNetwork')}
           </label>
           <select
             disabled={!switchNetwork}
-            className='bg-[#4571E1] text-white  bg-opacity-40 py-3 px-2 rounded-lg w-full'
+            className='w-full rounded-xl border border-line-strong bg-bg-elev-2 px-3 py-3 text-fg'
             name='network'
             id='network'
             value={networkValue}
@@ -737,7 +736,7 @@ function Page () {
             <option value='celo'>Celo</option>
           </select>
           <button
-            className='w-full  px-5 py-2 bg-[#4571E1] text-white   font-bold rounded-lg'
+            className='btn-aurora w-full rounded-full px-5 py-2.5 font-medium'
             type='submit'
           >
             {t('buttons.whichNetwork')}
@@ -747,15 +746,15 @@ function Page () {
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        className='p-3 gap-4 overflow-hidden relative max-w-md w-11/12 sm:w-10/12 md:9/12 bg-[#e3e3e3]  text-black rounded-lg flex flex-col justify-center items-center'
+        className='relative flex w-full max-w-md flex-col items-center justify-center gap-4 overflow-hidden rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-6 text-fg sm:p-8'
       >
-        <h1 className='font-bold w-full text-start text-base'>
+        <h1 className='w-full text-start font-display text-3xl'>
           {t('buttons.donate')}
         </h1>
         {(chain?.unsupported || !isConnected) && (
           <>
-            <div className=' w-full border-b-[#797979] border-opacity-20 rounded-md border-[1px]' />
-            <p className='text-start w-full text-xs opacity-80'>
+            <div className='w-full border-b border-line' />
+            <p className='w-full text-start text-sm text-fg-muted'>
               {chain?.unsupported
                 ? t('messages.incorrectNetwork')
                 : t('messages.connectWallet')}
@@ -766,7 +765,7 @@ function Page () {
           {isConnected && !chain?.unsupported && (
             <button
               onClick={() => setIsChangingNetwork(true)}
-              className='flex py-[6px] px-2 font-bold    border-2 rounded-lg bg-[#4571E1] text-white border-[#4571E1 flex-row gap-2 items-center justify-between  w-full'
+              className='flex w-full flex-row items-center justify-between gap-2 rounded-full border border-line-strong bg-bg-elev-2 px-4 py-2 font-medium text-fg hover:bg-white/5'
             >
               {chain?.name}
               <svg
@@ -790,7 +789,7 @@ function Page () {
 
         {isConnected ||
           (chain?.unsupported && (
-            <div className=' w-full border-b-[#797979] border-opacity-20 rounded-md border-[1px]' />
+            <div className='w-full border-b border-line' />
           ))}
         {isConnected && !chain?.unsupported && (
           <form
@@ -798,12 +797,12 @@ function Page () {
             className='flex w-full flex-col gap-2  justify-center items-center'
             action=''
           >
-            <label htmlFor='token' className='text-sm  w-full'>
+            <label htmlFor='token' className='w-full text-sm text-fg-muted'>
               {t('whichToken')}
             </label>
             <select
               disabled={!isCorrectNetwork}
-              className='bg-[#4571E1] text-white  bg-opacity-40 py-2 px-2 rounded-lg w-full'
+              className='w-full rounded-xl border border-line-strong bg-bg-elev-2 px-3 py-2.5 text-fg'
               name='token'
               id='token'
               value={selectValue}
@@ -815,12 +814,12 @@ function Page () {
                 </option>
               ))}
             </select>
-            <label className='text-sm  w-full' htmlFor='amount'>
+            <label className='w-full text-sm text-fg-muted' htmlFor='amount'>
               {t('amount')}
             </label>
             <input
               ref={priceRef}
-              className='bg-[#4571E1] text-white placeholder:text-white bg-opacity-40 py-2 px-2 rounded-lg w-full'
+              className='w-full rounded-xl border border-line-strong bg-bg-elev-2 px-3 py-2.5 text-fg placeholder:text-fg-faint'
               type='text'
               name='amount'
               id='amount'
@@ -834,20 +833,20 @@ function Page () {
             />
             <div className='flex max-w-full w-full flex-col items-center justify-center gap-5'>
               <div className=' min-h-fit  max-w-full relative flex w-full flex-col gap-2'>
-                <p className=' text-sm w-full'>{t('messages.usdValue')}</p>
+                <p className='w-full text-sm text-fg-muted'>{t('messages.usdValue')}</p>
                 <div className='overflow-hidden max-w-[80vw] whitespace-nowrap '>
                   <h1
                     className={`${
-                      !isCorrectAmmount.onlyAmmount && 'text-red-700'
-                    } font-bold text-4xl`}
+                      !isCorrectAmmount.onlyAmmount && 'text-red-400'
+                    } font-display text-4xl`}
                   >{`≈ $${price}`}</h1>
                   {isCorrectAmmount.submit && (
-                    <p className='text-red-700'>{t('messages.minValue')}</p>
+                    <p className='text-sm text-red-400'>{t('messages.minValue')}</p>
                   )}
                 </div>
               </div>
               <button
-                className={`flex flex-row gap-2 items-center justify-center px-5 transition-all duration-75 py-2 text-white bg-[#24B596] w-full rounded-lg ${
+                className={`btn-aurora flex w-full flex-row items-center justify-center gap-2 rounded-full px-5 py-3 font-medium transition-all duration-75 disabled:opacity-60 ${
                   price === '0' && 'opacity-90'
                 }`}
                 type='submit'
@@ -860,11 +859,6 @@ function Page () {
           </form>
         )}
       </motion.div>
-      <Image
-        className='absolute bottom-0 w-[100vw] left-0'
-        src={BordeBottom}
-        alt='Medellin'
-      />
     </main>
   )
 }

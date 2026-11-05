@@ -144,7 +144,7 @@ export default async function RootLayout ({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
         />
       </head>
-      <body className='grain min-h-dvh bg-bg text-fg antialiased'>
+      <body className='grain min-h-screen bg-bg text-fg antialiased'>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <CampaignBanner />
