@@ -137,7 +137,7 @@ export default function Page() {
   if (!isMounted) return null;
   if (!isConnected) {
     return (
-      <main className='flex min-h-dvh items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
+      <main className='flex min-h-screen items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
         <div className='w-full max-w-lg rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-8 text-center'>
           <h1 className='font-display text-3xl'>
             {locale === 'es' ? 'Conecta tu wallet' : 'Connect your wallet'}
@@ -156,7 +156,7 @@ export default function Page() {
   }
   if (!hasNft) {
     return (
-      <section className='flex p-20 flex-col relative first-bg justify-center items-center min-h-screen text-white text-center gap-4 bg-[#1B2731] w-full'>
+      <section className='flex p-20 flex-col relative first-bg justify-center items-center min-h-screen text-white text-center gap-4 mesh-aurora w-full'>
         <h1 className='font-bold text-4xl lg:text-8xl'>
           {t('hasnotNFT.title')}
         </h1>
@@ -176,7 +176,7 @@ export default function Page() {
   }
 
   return (
-    <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 bg-[#1B2731] min-h-screen flex justify-center items-center'>
+    <main className='lend__panel px-5 text-white py-32 gap-4 lg:px-20 mesh-aurora min-h-screen flex justify-center items-center'>
       <div className='flex flex-row gap-4 items-end'>
         <div className='flex flex-col gap-2 place-self-start'>
           <h4>Moneda</h4>

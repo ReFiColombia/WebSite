@@ -60,7 +60,7 @@ function Page() {
   if (!mounted) return null;
   if (!isConnected) {
     return (
-      <main className='flex min-h-dvh items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
+      <main className='flex min-h-screen items-center justify-center bg-bg px-5 pt-32 pb-20 text-fg'>
         <div className='w-full max-w-lg rounded-[var(--radius-card)] border border-line-strong bg-bg-elev p-8 text-center'>
           <h1 className='font-display text-3xl'>
             {locale === 'es' ? 'Conecta tu wallet' : 'Connect your wallet'}
@@ -76,7 +76,7 @@ function Page() {
   }
   if (isLoading) {
     return (
-      <main className='flex px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen justify-center items-center'>
+      <main className='flex px-5  py-32 gap-4 lg:px-20  mesh-aurora min-h-screen justify-center items-center'>
         <h1 className='font-bold text-4xl text-white lg:text-8xl'>
           Loading...
         </h1>
@@ -85,7 +85,7 @@ function Page() {
   }
   // if (!data && chain?.name != 'sepolia') {
   //   return (
-  //     <main className='flex px-5  py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen justify-center items-center'>
+  //     <main className='flex px-5  py-32 gap-4 lg:px-20  mesh-aurora min-h-screen justify-center items-center'>
   //       <h1 className='font-bold text-4xl text-white lg:text-8xl'>
   //         Unauthorized
   //       </h1>
@@ -127,7 +127,7 @@ function Page() {
   };
 
   return (
-    <main className='lendManager px-5 text-white py-32 gap-4 lg:px-20  bg-[#1B2731] min-h-screen justify-center items-center'>
+    <main className='lendManager px-5 text-white py-32 gap-4 lg:px-20  mesh-aurora min-h-screen justify-center items-center'>
       <div className='flex flex-row gap-4 w-full items-end'>
         <div className='flex flex-col gap-2  place-self-start'>
           <h4>Moneda</h4>
